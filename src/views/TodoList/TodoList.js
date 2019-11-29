@@ -1,14 +1,12 @@
-import { Typography } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
+import React, { useCallback, useEffect, useState } from 'react';
 import { object } from 'prop-types';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+
 import { apiClient } from 'api/api';
+import { useSnackbar } from 'utils/useSnackbar/useSnackbar';
 import { DeleteTodoDialog } from 'components/DeleteTodoDialog/DeleteTodoDialog';
 import { EditTodoDialog } from 'components/EditTodoDialog/EditTodoDialog';
 import ItemsList from 'components/ItemsList/ItemsList';
 import { NewTodo } from 'components/NewTodo/NewTodo';
-import { useSnackbar } from 'utils/useSnackbar/useSnackbar';
 
 const propTypes = {
   api: object
@@ -82,8 +80,9 @@ export const TodoList = ({ api }) => {
     }
   }, [getTodos, showErrorSnackbar, api]);
 
-  const todo = todos.filter(item => !item.isDone);
-  const finished = todos.filter(item => item.isDone);
+  const tasksTodo = todos.filter(item => !item.isDone);
+  const tasksFinished = todos.filter(item => item.isDone);
+  const hasFinishedTasks = tasksFinished.length > 0;
 
   useEffect(() => {
     getTodos();
@@ -91,22 +90,22 @@ export const TodoList = ({ api }) => {
 
   return (
     <>
-      <NewTodo addTodo={ addTodo } />
+      <NewTodo addTodo={ addTodo }/>
 
       <ItemsList
-        items={ todo }
+        items={ tasksTodo }
         onDelete={ setTodoToDelete }
         onEdit={ setTodoToEdit }
         onToggleDone={ toggleDoneTodo }
       />
 
-      <ItemsList
+      { hasFinishedTasks && <ItemsList
         title='Finished'
-        items={ finished }
+        items={ tasksFinished }
         onDelete={ setTodoToDelete }
         onEdit={ setTodoToEdit }
         onToggleDone={ toggleDoneTodo }
-      />
+      /> }
 
       <DeleteTodoDialog
         todo={ todoToDelete }

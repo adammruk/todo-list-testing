@@ -11,11 +11,11 @@ class ApiClient {
 
   get cookiesTodos() {
     const todos = this.cookies.get(TODOS_COOKIE) || [];
-
+    console.log(todos);
     return todos.map(({ dueDate, ...todo }) => {
       return {
         ...todo,
-        dueDate: new Date(dueDate),
+        dueDate: new Date(dueDate)
       }
     })
   }
@@ -29,20 +29,16 @@ class ApiClient {
   }
 
   async getTodos() {
-    // await delay(500);
-    const todos = this.cookiesTodos;
-    return Promise.resolve(todos);
+    return Promise.resolve(this.cookiesTodos);
   }
 
   async addTodo(todo) {
-    // await delay(500);
     const todos = this.cookiesTodos;
     todos.push({ ...todo, id: uuidv1() });
-    this.cookies.set(TODOS_COOKIE, todos)
+    this.cookies.set(TODOS_COOKIE, todos);
   }
 
   async editTodo(newTodo) {
-    // await delay(500);
     const todos = this.cookiesTodos;
     const index = todos.findIndex(todo => todo.id === newTodo.id);
     if (index === -1) {
@@ -55,7 +51,6 @@ class ApiClient {
   }
 
   async deleteTodo(id) {
-    // await delay(500);
     const todos = this.cookiesTodos;
     const index = todos.findIndex(todo => todo.id === id);
     if (index === -1) {

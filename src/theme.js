@@ -1,15 +1,15 @@
 import { grey, indigo, purple, red } from '@material-ui/core/colors';
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme } from '@material-ui/core/styles';
 
 export const theme = createMuiTheme({
   palette: {
     primary: indigo,
-    secondary: red,
+    secondary: red
   },
   overrides: {
     MuiTypography: {
       root: {
-        color: grey['800'],
+        color: grey['800']
       },
       h4: {
         color: 'white'

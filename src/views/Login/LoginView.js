@@ -1,25 +1,20 @@
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { Formik } from 'formik';
-import { object } from 'prop-types';
 import React, { useCallback } from 'react';
+import { object } from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { makeStyles } from '@material-ui/core/styles';
+import { Avatar, Box, Button, CircularProgress, Container, Paper, TextField, Typography } from '@material-ui/core';
+
 import { apiClient } from 'api/api';
-import { ROUTES } from 'routes';
 import { useSnackbar } from 'utils/useSnackbar/useSnackbar';
+import { ROUTES } from 'routes';
 
 const useStyles = makeStyles(({ spacing, palette }) => ({
   paper: {
     marginTop: spacing(8),
+    padding: spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
@@ -29,7 +24,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
     backgroundColor: palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: spacing(1)
   },
   submit: {
@@ -79,8 +74,7 @@ export const LoginView = ({ api }) => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline/>
-      <div className={ classes.paper }>
+      <Paper className={ classes.paper }>
         <Avatar className={ classes.avatar }>
           <LockOutlinedIcon/>
         </Avatar>
@@ -137,7 +131,7 @@ export const LoginView = ({ api }) => {
             </form>
           ) }
         </Formik>
-      </div>
+      </Paper>
     </Container>
   )
 };

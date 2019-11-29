@@ -1,7 +1,6 @@
-import { Typography } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
 import React from 'react'
-import Box from '@material-ui/core/Box';
+import { Box, Divider, Typography } from '@material-ui/core';
+
 import { TodoCard } from '../TodoCard/TodoCard';
 
 const ItemsList = ({ items, onDelete, onEdit, onToggleDone, title }) => {
@@ -9,8 +8,8 @@ const ItemsList = ({ items, onDelete, onEdit, onToggleDone, title }) => {
     <Box mt={ 2 } mb={ 2 }>
       { title && (<>
         <Typography variant='h4'>{ title }</Typography>
-        <Divider />
-      </> )}
+        <Divider/>
+      </>) }
       <Box mt={ 2 } mb={ 2 }>
         { items.map((item) => (
           <TodoCard

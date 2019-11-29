@@ -1,16 +1,12 @@
-import React from 'react'
-import Box from '@material-ui/core/Box';
+import { Box, Grid, IconButton, Paper, Typography } from '@material-ui/core';
 import { grey, red } from '@material-ui/core/colors';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import EditIcon from '@material-ui/icons/Edit';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { compareAsc, format, isSameDay } from 'date-fns'
+import React from 'react'
 
 const useStyles = makeStyles(({ spacing }) => ({
   paper: ({ isDone }) => ({
@@ -27,7 +23,6 @@ const useStyles = makeStyles(({ spacing }) => ({
 
 export const TodoCard = ({ item, onToggleDone, onDelete, onEdit }) => {
   const { name, dueDate, isDone } = item;
-
   const isOverdue = compareAsc(dueDate, new Date()) === -1 && !isSameDay(dueDate, new Date()) && !isDone;
   const classes = useStyles({ isDone, isOverdue });
 
@@ -51,19 +46,19 @@ export const TodoCard = ({ item, onToggleDone, onDelete, onEdit }) => {
 
           <Grid item>
             <IconButton onClick={ () => onEdit(item) }>
-              <EditIcon />
+              <EditIcon/>
             </IconButton>
           </Grid>
 
           <Grid item>
             <IconButton onClick={ () => onToggleDone(item) }>
-              { isDone ? <CheckCircleIcon /> : <RadioButtonUncheckedIcon /> }
+              { isDone ? <CheckCircleIcon/> : <RadioButtonUncheckedIcon/> }
             </IconButton>
           </Grid>
 
           <Grid item>
             <IconButton onClick={ () => onDelete(item) }>
-              <DeleteIcon />
+              <DeleteIcon/>
             </IconButton>
           </Grid>
 
