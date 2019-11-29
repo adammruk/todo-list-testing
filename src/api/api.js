@@ -11,7 +11,6 @@ class ApiClient {
 
   get cookiesTodos() {
     const todos = this.cookies.get(TODOS_COOKIE) || [];
-    console.log(todos);
     return todos.map(({ dueDate, ...todo }) => {
       return {
         ...todo,

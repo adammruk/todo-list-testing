@@ -9,6 +9,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 const newTodoSchema = Yup.object().shape({
   name: Yup.string()
+    .trim()
     .required('Name is required')
 });
 

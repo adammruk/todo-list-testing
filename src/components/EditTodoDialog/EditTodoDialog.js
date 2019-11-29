@@ -6,6 +6,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 
 const newTodoSchema = Yup.object().shape({
   name: Yup.string()
+    .trim()
     .required('Name is required')
 });
 
