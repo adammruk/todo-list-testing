@@ -7,8 +7,8 @@ const ItemsList = ({ items, onDelete, onEdit, onToggleDone, title }) => {
   return (
     <Box mt={ 2 } mb={ 2 }>
       { title && (<>
-        <Typography variant='h4'>{ title }</Typography>
-        <Divider/>
+        <Typography variant="h4">{ title }</Typography>
+        <Divider />
       </>) }
       <Box mt={ 2 } mb={ 2 }>
         { items.map((item) => (

@@ -29,7 +29,7 @@ export const NewTodo = ({ addTodo }) => {
           >
             { props => (
               <form onSubmit={ props.handleSubmit }>
-                <Typography variant='h2' align='center'>Todo</Typography>
+                <Typography variant="h2" align="center">Todo</Typography>
 
                 <Grid item xs={ 12 }>
                   <TextField
@@ -64,8 +64,8 @@ export const NewTodo = ({ addTodo }) => {
                   </Grid>
                   <Grid item xs={ 2 }>
                     <Box textAlign="center">
-                      <Fab color="primary" aria-label="add" disabled={ props.isSubmitting } type='submit'>
-                        <AddIcon/>
+                      <Fab color="primary" aria-label="add" disabled={ props.isSubmitting } type="submit">
+                        <AddIcon />
                       </Fab>
                     </Box>
                   </Grid>

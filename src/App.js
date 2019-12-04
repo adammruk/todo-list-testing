@@ -16,7 +16,7 @@ function App() {
   return (
     <ThemeProvider theme={ theme }>
       <MuiPickersUtilsProvider utils={ DateFnsUtils }>
-        <CssBaseline/>
+        <CssBaseline />
         <SnackbarProvider
           maxSnack={ 3 }
           anchorOrigin={ {
@@ -38,7 +38,7 @@ function App() {
                   component={ TodoList }
                 />
                 <Route path="*">
-                  <Redirect to={ ROUTES.LOGIN }/>
+                  <Redirect to={ ROUTES.LOGIN } />
                 </Route>
               </Switch>
             </Router>

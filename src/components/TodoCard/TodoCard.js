@@ -46,19 +46,19 @@ export const TodoCard = ({ item, onToggleDone, onDelete, onEdit }) => {
 
           <Grid item>
             <IconButton onClick={ () => onEdit(item) }>
-              <EditIcon/>
+              <EditIcon />
             </IconButton>
           </Grid>
 
           <Grid item>
             <IconButton onClick={ () => onToggleDone(item) }>
-              { isDone ? <CheckCircleIcon/> : <RadioButtonUncheckedIcon/> }
+              { isDone ? <CheckCircleIcon /> : <RadioButtonUncheckedIcon /> }
             </IconButton>
           </Grid>
 
           <Grid item>
             <IconButton onClick={ () => onDelete(item) }>
-              <DeleteIcon/>
+              <DeleteIcon />
             </IconButton>
           </Grid>
 

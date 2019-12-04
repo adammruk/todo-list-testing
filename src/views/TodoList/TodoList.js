@@ -90,7 +90,7 @@ export const TodoList = ({ api }) => {
 
   return (
     <>
-      <NewTodo addTodo={ addTodo }/>
+      <NewTodo addTodo={ addTodo } />
 
       <ItemsList
         items={ tasksTodo }
@@ -100,7 +100,7 @@ export const TodoList = ({ api }) => {
       />
 
       { hasFinishedTasks && <ItemsList
-        title='Finished'
+        title="Finished"
         items={ tasksFinished }
         onDelete={ setTodoToDelete }
         onEdit={ setTodoToEdit }

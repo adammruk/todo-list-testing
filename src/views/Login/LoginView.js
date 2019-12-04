@@ -76,7 +76,7 @@ export const LoginView = ({ api }) => {
     <Container component="main" maxWidth="xs">
       <Paper className={ classes.paper }>
         <Avatar className={ classes.avatar }>
-          <LockOutlinedIcon/>
+          <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Login
@@ -99,7 +99,6 @@ export const LoginView = ({ api }) => {
                 fullWidth
                 label="Email address"
                 name="email"
-                autoFocus
               />
               <TextField
                 error={ props.touched.password && !!props.errors.password }
@@ -126,7 +125,7 @@ export const LoginView = ({ api }) => {
                 Sign In
               </Button>
               <Box textAlign="center">
-                { props.isSubmitting && <CircularProgress size={ 20 }/> }
+                { props.isSubmitting && <CircularProgress size={ 20 } /> }
               </Box>
             </form>
           ) }
