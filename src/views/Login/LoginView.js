@@ -79,7 +79,7 @@ export const LoginView = ({ api }) => {
           <LockOutlinedIcon/>
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
         <Formik
           validationSchema={ loginSchema }
@@ -97,7 +97,7 @@ export const LoginView = ({ api }) => {
                 variant="outlined"
                 margin="normal"
                 fullWidth
-                label="Email Address"
+                label="Email address"
                 name="email"
                 autoFocus
               />
