@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { object } from 'prop-types';
 
 import { apiClient } from 'api/api';
+import { useAnalytics } from 'utils/useAnalytics/useAnalytics';
 import { useSnackbar } from 'utils/useSnackbar/useSnackbar';
 import { DeleteTodoDialog } from 'components/DeleteTodoDialog/DeleteTodoDialog';
 import { EditTodoDialog } from 'components/EditTodoDialog/EditTodoDialog';
@@ -21,6 +22,7 @@ export const TodoList = ({ api }) => {
   const [todos, setTodos] = useState([]);
   const [todoToDelete, setTodoToDelete] = useState(null);
   const [todoToEdit, setTodoToEdit] = useState(null);
+  const pushEvent = useAnalytics();
 
   const getTodos = useCallback(async () => {
     const response = await api.getTodos();
@@ -32,13 +34,15 @@ export const TodoList = ({ api }) => {
     actions.resetForm();
     getTodos();
     showSuccessSnackbar('Todo added!');
-  }, [getTodos, showSuccessSnackbar, api]);
+    pushEvent('addTodo');
+  }, [getTodos, showSuccessSnackbar, api, pushEvent]);
 
   const deleteTodo = useCallback(async () => {
     try {
       await api.deleteTodo(todoToDelete.id);
       getTodos();
       showSuccessSnackbar('Todo deleted!');
+      pushEvent('deleteTodo');
     } catch (error) {
       if (error.code === 404) {
         showErrorSnackbar('Cannot find todo.')
@@ -48,13 +52,14 @@ export const TodoList = ({ api }) => {
     } finally {
       setTodoToDelete(null);
     }
-  }, [showErrorSnackbar, showSuccessSnackbar, todoToDelete, api, getTodos]);
+  }, [showErrorSnackbar, showSuccessSnackbar, todoToDelete, api, getTodos, pushEvent]);
 
   const editTodo = useCallback(async (values, actions) => {
     try {
       await api.editTodo({ ...todoToEdit, ...values });
       getTodos();
       showSuccessSnackbar('Todo updated!');
+      pushEvent('updateTodo');
     } catch (error) {
       if (error.code === 404) {
         showErrorSnackbar('Cannot find todo.')
@@ -65,12 +70,13 @@ export const TodoList = ({ api }) => {
       setTodoToEdit(null);
       actions.resetForm();
     }
-  }, [todoToEdit, getTodos, showErrorSnackbar, showSuccessSnackbar, api]);
+  }, [todoToEdit, getTodos, showErrorSnackbar, showSuccessSnackbar, api, pushEvent]);
 
   const toggleDoneTodo = useCallback(async (todo) => {
     try {
       await api.editTodo({ ...todo, isDone: !todo.isDone });
       getTodos();
+      pushEvent('toggleDoneTodo');
     } catch (error) {
       if (error.code === 404) {
         showErrorSnackbar('Cannot find todo.')
@@ -78,7 +84,7 @@ export const TodoList = ({ api }) => {
         showErrorSnackbar('Unexpected error. Try again later.');
       }
     }
-  }, [getTodos, showErrorSnackbar, api]);
+  }, [getTodos, showErrorSnackbar, api, pushEvent]);
 
   const tasksTodo = todos.filter(item => !item.isDone);
   const tasksFinished = todos.filter(item => item.isDone);
