@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import TagManager from 'react-gtm-module';
 
 import { LoginView } from 'views/Login/LoginView';
 import { TodoList } from 'views/TodoList/TodoList';
@@ -13,6 +14,11 @@ import { theme } from './theme';
 import { ROUTES } from './routes';
 
 function App() {
+
+  if (process.env.NODE_ENV !== 'test') {
+    TagManager.initialize({ gtmId: process.env.REACT_APP_GOOGLE_TAG_MANAGER });
+  }
+
   return (
     <ThemeProvider theme={ theme }>
       <MuiPickersUtilsProvider utils={ DateFnsUtils }>
